@@ -1,0 +1,404 @@
+/* =================================
+   TODO 1: تعريف متغيرات CSS
+================================= */
+
+:root {
+    --bg-dark: #0f0f1a;
+    --bg-card: #1a1a2e;
+    --primary: #4caf50;
+    --text: #e0e0e0;
+    --radius: 12px;
+    --transition: all 0.3s ease;
+    --section-padding: 80px 8%;
+}
+
+/* الإعدادات العامة */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    direction: rtl;
+    background-color: var(--bg-dark);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+/* =================================
+   TODO 2: شريط التنقل والانتقالات
+================================= */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 8%;
+    background-color: var(--bg-card);
+    z-index: 1000;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    color: var(--primary);
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-link {
+    position: relative;
+    text-decoration: none;
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}
+
+/* الخط السفلي المتحرك */
+
+.nav-link::after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+/* =================================
+   TODO 3: حركة ظهور النص FadeInUp
+================================= */
+
+@keyframes fadeInUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* القسم الرئيسي */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 20px 60px;
+    background: linear-gradient(
+        135deg,
+        #0f0f1a,
+        #202040
+    );
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero h1 {
+    color: var(--primary);
+    font-size: 45px;
+    margin-bottom: 15px;
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+.hero h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.8s ease-out 0.9s both;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+/* =================================
+   TODO 4: بطاقات المهارات
+   التكبير عند تمرير الفأرة
+================================= */
+
+.skills-section {
+    padding: var(--section-padding);
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.skills-section h2,
+.projects-section h2,
+.contact-section h2 {
+    font-size: 35px;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.section-description {
+    margin-bottom: 40px;
+    color: #aaaaaa;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.skill-card {
+    background-color: var(--bg-card);
+    padding: 30px 20px;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    border: 1px solid #292941;
+}
+
+.skill-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.25);
+}
+
+.skill-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.skill-card h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+/* =================================
+   TODO 5: المشاريع والطبقة العلوية
+================================= */
+
+.projects-section {
+    padding: var(--section-padding);
+    background-color: #151525;
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.project-card {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background-color: var(--bg-card);
+}
+
+.project-image {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.project-image span {
+    font-size: 90px;
+}
+
+.image-one {
+    background: linear-gradient(135deg, #243b55, #141e30);
+}
+
+.image-two {
+    background: linear-gradient(135deg, #134e5e, #71b280);
+}
+
+.image-three {
+    background: linear-gradient(135deg, #42275a, #734b6d);
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.1);
+}
+
+/* الطبقة العلوية */
+
+.project-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 15, 26, 0.92);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-overlay h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.project-overlay p {
+    margin-bottom: 20px;
+}
+
+.project-btn {
+    background-color: var(--primary);
+    color: white;
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.project-btn:hover {
+    transform: scale(1.08);
+}
+
+/* =================================
+   TODO 6: حركات ظهور الأقسام
+================================= */
+
+.contact-section {
+    padding: var(--section-padding);
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.contact-section p {
+    margin: 20px 0;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.social-links a {
+    color: var(--primary);
+    text-decoration: none;
+    border: 1px solid var(--primary);
+    padding: 10px 18px;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-5px);
+}
+
+/* التذييل */
+
+footer {
+    background-color: var(--bg-card);
+    padding: 25px 15px;
+    text-align: center;
+    color: #aaaaaa;
+}
+
+/* =================================
+   تصميم متجاوب مع الهاتف
+================================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 12px 4%;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .nav-links {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero h2 {
+        font-size: 20px;
+    }
+
+    .skills-container,
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-section,
+    .projects-section,
+    .contact-section {
+        padding: 60px 5%;
+    }
+}
